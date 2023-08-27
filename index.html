@@ -6,8 +6,73 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+<style>
+.cont div {
+  padding: 20px; /* Adjust the value as needed */
+}
+</style>
 </head>
 <body>
+<main class="container">
+
   <h1>Hello, world!</h1>
+<button class="contrast" id="openAllLinks">Open All Links</button>
+<div class="cont">
+  <div>
+    <h1>The Guardian</h1>
+    <button onclick="window.open('https://www.theguardian.com/international', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Live Mint</h1>
+    <button onclick="window.open('https://www.livemint.com', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Business Standard</h1>
+    <button onclick="window.open('https://www.business-standard.com', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Financial Times</h1>
+    <button onclick="window.open('https://www.ft.com', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Verge</h1>
+    <button onclick="window.open('https://www.theverge.com', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Gulf News</h1>
+    <button onclick="window.open('https://gulfnews.com', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Outlook</h1>
+    <button onclick="window.open('https://www.outlookindia.com', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Indian Express</h1>
+    <button onclick="window.open('https://indianexpress.com', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Business Today</h1>
+    <button onclick="window.open('https://www.businesstoday.in', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Wall Street Journal</h1>
+    <button onclick="window.open('https://www.wsj.com', '_blank')">Open</button>
+  </div>
+  <div>
+    <h1>Wired</h1>
+    <button onclick="window.open('https://www.wired.com', '_blank')">Open</button>
+  </div>
+</div>
+
+</main>
+<script>
+  document.getElementById("openAllLinks").addEventListener("click", function() {
+    var links = document.querySelectorAll(".cont a"); // Select all <a> elements inside .grid
+    
+    links.forEach(function(link) {
+      window.open(link.href, "_blank"); // Open each link in a new tab/window
+    });
+  });
+</script>
 </body>
 </html>

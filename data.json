@@ -1,0 +1,20 @@
+{
+    "live_mint": {
+        "title": "Live Mint",
+        "description": "Mint is an Indian business and financial daily newspaper published by HT Media, a Delhi-based media group which is controlled by the K. K. Birla family that also publishes Hindustan Times. Published s…",
+        "site_link": "https://www.livemint.com",
+        "logo_link": "Logo link not found"
+    },
+    "financial_times": {
+        "title": "Financial Times",
+        "description": "The Financial Times is a British daily business newspaper printed in broadsheet and also published digitally that focuses on business and economic current affairs. Based in London, the paper is owned …",
+        "site_link": "https://www.ft.com",
+        "logo_link": "Logo link not found"
+    },
+    "the_verge": {
+        "title": "The Verge",
+        "description": "The Verge is an American technology news website headquartered in Lower Manhattan, New York City and operated by Vox Media. The website publishes news, feature stories, guidebooks, product reviews, co…",
+        "site_link": "https://www.theverge.com",
+        "logo_link": "Logo link not found"
+    }
+}

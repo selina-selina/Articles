@@ -1,79 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Dhina Nottu</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-<style>
-.cont div {
-  padding: 20px; /* Adjust the value as needed */
-}
-</style>
-</head>
-<body>
-<main class="container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Articles</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <main class="bg-white py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:mx-0">
+          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            From the blog
+          </h2>
+          <p class="mt-2 text-lg leading-8 text-gray-600">
+            Learn how to grow your business with our expert advice.
+          </p>
+        </div>
+        <div
+          id="main"
+          class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+        ></div>
+      </div>
+    </main>
 
-  <h1>DinaNottu!</h1>
-<button class="contrast" id="openAllLinks">Open All Links</button>
-<div class="cont">
-  <div>
-    <h1>The Guardian</h1>
-    <button onclick="window.open('https://www.theguardian.com/international', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Live Mint</h1>
-    <button onclick="window.open('https://www.livemint.com', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Business Standard</h1>
-    <button onclick="window.open('https://www.business-standard.com', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Financial Times</h1>
-    <button onclick="window.open('https://www.ft.com', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Verge</h1>
-    <button onclick="window.open('https://www.theverge.com', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Gulf News</h1>
-    <button onclick="window.open('https://gulfnews.com', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Outlook</h1>
-    <button onclick="window.open('https://www.outlookindia.com', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Indian Express</h1>
-    <button onclick="window.open('https://indianexpress.com', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Business Today</h1>
-    <button onclick="window.open('https://www.businesstoday.in', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Wall Street Journal</h1>
-    <button onclick="window.open('https://www.wsj.com', '_blank')">Open</button>
-  </div>
-  <div>
-    <h1>Wired</h1>
-    <button onclick="window.open('https://www.wired.com', '_blank')">Open</button>
-  </div>
-</div>
+    <script>
+      // Function to generate articles
+      function generateArticles() {
+        var container = document.getElementById("main"); // You can replace document.body with your container element
 
-</main>
-<script>
-  document.getElementById("openAllLinks").addEventListener("click", function() {
-    var links = document.querySelectorAll(".cont a"); // Select all <a> elements inside .grid
-    console.log(links)
-    
-    links.forEach(function(link) {
-      window.open(link.href, "_blank"); // Open each link in a new tab/window
-    });
-  });
-</script>
-</body>
+        fetch("test.json") // Replace 'your_json_file.json' with the correct path to your JSON file
+          .then((response) => response.json())
+          .then((data) => {
+            // Convert the JSON data into the desired object format
+            var dictionary = {};
+
+            Object.keys(data).forEach((newsSource) => {
+              const sourceData = data[newsSource];
+              dictionary[newsSource] = {
+                title: sourceData.title,
+                description: sourceData.description,
+                site_link: sourceData.site_link,
+                logo_link: sourceData.logo_link,
+                category: "Finance", // You can set the category based on your requirements
+              };
+            });
+
+            // Log the resulting dictionary to the console
+            console.log(dictionary);
+
+            // Loop through the dictionary and create articles
+            for (var key in dictionary) {
+              if (dictionary.hasOwnProperty(key)) {
+                var article = document.createElement("article");
+                article.classList.add(
+                  "flex",
+                  "max-w-xl",
+                  "flex-col",
+                  "items-start",
+                  "justify-between"
+                );
+
+                var htmlContent = `
+                  <div class="flex items-center gap-x-4 text-xs">
+                      <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
+                      <a onclick="window.open('${
+                        dictionary[key].site_link
+                      }', '_blank')" class="cursor-pointer relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">${
+                  dictionary[key].category || "Uncategorized"
+                }</a>
+                  </div>
+                  <div class="group relative">
+                      <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                          <a href="#" onclick="window.open('${
+                            dictionary[key].site_link
+                          }', '_blank')">
+                              <span class="absolute inset-0"></span>
+                              ${dictionary[key].title}
+                          </a>
+                      </h3>
+                      <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">${
+                        dictionary[key].description
+                      }</p>
+                  </div>
+                  <div class="relative mt-8 flex items-center gap-x-4">
+                      <img src="${
+                        dictionary[key].logo_link
+                      }" alt="" class="h-10 w-10 rounded-full bg-gray-50">
+                      <div class="text-sm leading-6">
+                          <p class="font-semibold text-gray-900">
+                              <a href="#" onclick="window.open('${
+                                dictionary[key].site_link
+                              }', '_blank')">
+                                  <span class="absolute inset-0"></span>
+                                  ${dictionary[key].title}
+                              </a>
+                          </p>
+                          <p class="text-gray-600">${
+                            dictionary[key].category || "Uncategorized"
+                          }</p>
+                      </div>
+                  </div>
+                `;
+
+                article.innerHTML = htmlContent;
+
+                // Appending the article to the container
+                container.appendChild(article);
+              }
+            }
+          })
+          .catch((error) => console.error("Error fetching JSON:", error));
+      }
+
+      // Call the function to generate articles
+      generateArticles();
+    </script>
+  </body>
 </html>

@@ -1,120 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dynamic Articles</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
+</head>
+<body>
+
     <main class="bg-white py-24 sm:py-32">
-      <div class="mx-auto max-w-7xl px-6 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            From the blog
-          </h2>
-          <p class="mt-2 text-lg leading-8 text-gray-600">
-            Learn how to grow your business with our expert advice.
-          </p>
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl lg:mx-0">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Finance Articles</h2>
+            <p class="mt-2 text-lg leading-8 text-gray-600">List of finance article website links, not a news aggregator rather a list of Financial News media websites and its links.</p>
+          </div>
+          <div id="main" class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        
+          </div>
         </div>
-        <div
-          id="main"
-          class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 border-t border-gray-200 pt-10 sm:mt-16 sm:pt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-        ></div>
-      </div>
     </main>
 
-    <script>
-      // Function to generate articles
-      function generateArticles() {
+
+<script>
+    // Sample dictionary with multi-level structure
+    var dictionary = {
+        item1: {
+            title: "Live Mint",
+            description: "Mint is an Indian business and financial daily newspaper published by HT Media, a Delhi-based media group which is controlled by the K. K. Birla family that also publishes Hindustan Times. Published since 2007, it is a niche newspaper that specializes in business and politics.",
+            site_link: "https://www.livemint.com",
+            logo_link: "https://image.moengage.com/mintmoengage/20220221115446934161LTW4LNMint70x70pngmintmoengage.png",
+            category: "Finance",
+        },
+        item2: {
+            title: "Financial Times",
+            description: "The Financial Times is a British daily business newspaper printed in broadsheet and also published digitally that focuses on business and economic current affairs",
+            site_link: "https://www.ft.com",
+            logo_link: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Financial_Times_corporate_logo_%28alternative%29.svg/1200px-Financial_Times_corporate_logo_%28alternative%29.svg.png"
+        },
+        item3: {
+            title: "Verge",
+            description: "The Verge is an American technology news website headquartered in Lower Manhattan, New York City and operated by Vox Media. The website publishes news, feature stories, guidebooks, product reviews, co…",
+            site_link: "https://www.theverge.com/",
+            logo_link: "https://yt3.googleusercontent.com/lVEb1IUc9D8dZSQF4l8IlBWGjr636qaDHfMbzud0uv_LxdhiMeHtsuvUcSvJa86pWzJd9MCUeQ=s900-c-k-c0x00ffffff-no-rj ",
+            "category": "Tech - Finance"
+        },
+    "the_guardian": {
+        "title": "The Guardian",
+        "description": "The Guardian is a British daily newspaper. It was founded in 1821 as The Manchester Guardian, before it changed its name in 1959. Along with its sister papers, The Observer and The Guardian Weekly, Th…",
+        "site_link": "https://www.theguardian.com",
+        "logo_link": "https://yt3.googleusercontent.com/P7QrZEnioCzOeKA2sWKyxvR5hDwOG_fXky7kUAF300p72tiVBwvF2o86Mh9fD-kKNtgINmvhZrM=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "business_standard": {
+        "title": "Business Standard",
+        "description": "Business Standard is an Indian English-language daily edition newspaper published by Business Standard Private Limited, also available in Hindi. Founded in 1975, the newspaper covers the Indian econom…",
+        "site_link": "https://www.business-standard.com",
+        "logo_link": "https://yt3.googleusercontent.com/ytc/AIf8zZQwaTNf-DtP4y4TummC3sOXaxVwup73rmBstpTiZ9E=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "the_ken": {
+        "title": "The Ken",
+        "description": "The Ken is an Indian business news website based out of Bangalore, India. It was launched in 2016 as a premium subscriber-only platform that publishes one article per day. Its founders include Rohin D…",
+        "site_link": "https://the-ken.com",
+        "logo_link": "https://yt3.googleusercontent.com/D9Gw33hh2i1Cl9zkfOSUAN9wbvTAeXcqIQofyllGwBjaFUL4O629ZUZf6U9w8zJWmK0cOXl1Zg=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "reuters": {
+        "title": "Reuters",
+        "description": "International news agency",
+        "site_link": "https://www.reuters.com",
+        "logo_link": "https://yt3.googleusercontent.com/ytc/AIf8zZTy3hZOBZAtP88ZZN5HWQyD2iGT6mLMUr7OhPKnCPw=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "bloomberg": {
+        "title": "bloomberg",
+        "description": "Bloomberg L.P. is a privately held financial, software, data, and media company headquartered in Midtown Manhattan, New York City. It was co-founded by Michael Bloomberg in 1981, with Thomas Secunda, …",
+        "site_link": "https://www.bloomberg.com",
+        "logo_link": "https://yt3.googleusercontent.com/QnXaC_YmVgrih83IPHmS_37TOJquPQm4ESeop_PTyvatdS6pJa4ynQ57K9NtD6xV9n41h7to6Bw=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "wall_street_journal": {
+        "title": "Wall Street Journal",
+        "description": "The Wall Street Journal is an American business and economic-focused international daily newspaper based in New York City. The Journal is published six days a week by Dow Jones & Company, a division o…",
+        "site_link": "https://www.wsj.com",
+        "logo_link": "https://yt3.googleusercontent.com/JSS6ykU01xhBZd_sjDQrEmefuslfSPE0FNyVuw_QvRpn_J6SNX5aP0YGfw0h-wElil_PUw30O2o=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "economic_times": {
+        "title": "Economic Times",
+        "description": "The Economic Times is an Indian English-language business-focused daily newspaper. It is owned by The Times Group. The Economic Times began publication in 1961. As of 2012, it is the world's second-mo…",
+        "site_link": "https://economictimes.indiatimes.com",
+        "logo_link": "https://yt3.googleusercontent.com/ytc/AIf8zZT9h0GgpUZJytBNtlCcH7koyxET8p2fC0DsKiCdepI=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "forbes": {
+        "title": "Forbes",
+        "description": "American business magazine",
+        "site_link": "https://www.forbes.com",
+        "logo_link": "https://yt3.googleusercontent.com/ytc/AIf8zZQeB3FZG1WFLsKAjHVAqTPPZZQdWwEuc3Kxtfv5l7o=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "money_control": {
+        "title": "Money Control",
+        "description": "Description not found",
+        "site_link": "https://www.moneycontrol.com",
+        "logo_link": "https://yt3.googleusercontent.com/ytc/AIf8zZSAPCuPdOODQxJSG_FRTSpJ9RnNC6Dle8C7rELU5A=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "tribune": {
+        "title": "Tribune",
+        "description": "The Tribune is an Indian English-language daily newspaper published from Amritsar, Jalandhar, Ludhiana, Bathinda, Chandigarh and Gurugram. It was founded on 2 February 1881, in Lahore, Punjab, by Sard…",
+        "site_link": "https://www.tribuneindia.com",
+        "logo_link": "https://yt3.googleusercontent.com/ytc/AIf8zZTShJTQTmk26sMk6qGDcVhSiorVeoiIInCKMaomSQ=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "business_insider": {
+        "title": "Business Insider",
+        "description": "Business Insider is a New York City-based multinational financial and business news website founded in 2007. Since 2015, a majority stake in Business Insider's parent company Insider Inc. has been own…",
+        "site_link": "https://www.businessinsider.com",
+        "logo_link": "https://yt3.googleusercontent.com/TTxfi6M_GbvZPO7PpzALMFyOVNdbT_A9x4Q__IlbHudcW6ILewdofeHJcThIY6yitRzUGBypS-8=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "times_of_india": {
+        "title": "Times of India",
+        "description": "The Times of India, also known by its abbreviation TOI, is an Indian English-language daily newspaper and digital news media owned and managed by The Times Group. It is the fourth-largest newspaper in…",
+        "site_link": "https://timesofindia.indiatimes.com",
+        "logo_link": "https://yt3.googleusercontent.com/VbGkSvLpAmSOVxSQ-42YlR4uQjaRbADrBZ0Jbm8rpeI7RiFSEp2_8DJqzgqH4dWViwYOQy2QJnQ=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "nbc": {
+        "title": "NBC",
+        "description": "American television network",
+        "site_link": "https://www.nbc.com",
+        "logo_link": "https://yt3.googleusercontent.com/Iyl3USdPKmYU1klQW1El44iCAsRZtfHobgBkIhdwm8sjgZXIfsVttGob8_cTXhU1rSWIMUEDaw=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    "wire": {
+        "title": "Wire",
+        "description": "The Wire is an Indian nonprofit news and opinion website which publishes in English, Hindi, Marathi, and Urdu",
+        "site_link": "https://www.thewire.in",
+        "logo_link": "https://yt3.googleusercontent.com/ytc/AIf8zZS4RDLyeE82l0hcQTn_AzYCqfXnEB7BR1nvSDZPZg=s900-c-k-c0x00ffffff-no-rj",
+        "category": "Finance"
+    },
+    };
+
+    // Function to generate articles
+    function generateArticles() {
         var container = document.getElementById("main"); // You can replace document.body with your container element
 
-        fetch("test.json") // Replace 'your_json_file.json' with the correct path to your JSON file
-          .then((response) => response.json())
-          .then((data) => {
-            // Convert the JSON data into the desired object format
-            var dictionary = {};
-
-            Object.keys(data).forEach((newsSource) => {
-              const sourceData = data[newsSource];
-              dictionary[newsSource] = {
-                title: sourceData.title,
-                description: sourceData.description,
-                site_link: sourceData.site_link,
-                logo_link: sourceData.logo_link,
-                category: "Finance", // You can set the category based on your requirements
-              };
-            });
-
-            // Log the resulting dictionary to the console
-            console.log(dictionary);
-
-            // Loop through the dictionary and create articles
-            for (var key in dictionary) {
-              if (dictionary.hasOwnProperty(key)) {
-                var article = document.createElement("article");
-                article.classList.add(
-                  "flex",
-                  "max-w-xl",
-                  "flex-col",
-                  "items-start",
-                  "justify-between"
-                );
+        for (var key in dictionary) {
+            if (dictionary.hasOwnProperty(key)) {
+                var article = document.createElement('article');
+                article.classList.add("flex", "max-w-xl", "flex-col", "items-start", "justify-between");
 
                 var htmlContent = `
-                  <div class="flex items-center gap-x-4 text-xs">
-                      <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                      <a onclick="window.open('${
-                        dictionary[key].site_link
-                      }', '_blank')" class="cursor-pointer relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">${
-                  dictionary[key].category || "Uncategorized"
-                }</a>
-                  </div>
-                  <div class="group relative">
-                      <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                          <a href="#" onclick="window.open('${
-                            dictionary[key].site_link
-                          }', '_blank')">
-                              <span class="absolute inset-0"></span>
-                              ${dictionary[key].title}
-                          </a>
-                      </h3>
-                      <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">${
-                        dictionary[key].description
-                      }</p>
-                  </div>
-                  <div class="relative mt-8 flex items-center gap-x-4">
-                      <img src="${
-                        dictionary[key].logo_link
-                      }" alt="" class="h-10 w-10 rounded-full bg-gray-50">
-                      <div class="text-sm leading-6">
-                          <p class="font-semibold text-gray-900">
-                              <a href="#" onclick="window.open('${
-                                dictionary[key].site_link
-                              }', '_blank')">
-                                  <span class="absolute inset-0"></span>
-                                  ${dictionary[key].title}
-                              </a>
-                          </p>
-                          <p class="text-gray-600">${
-                            dictionary[key].category || "Uncategorized"
-                          }</p>
-                      </div>
-                  </div>
+                    <div class="flex items-center gap-x-4 text-xs">
+                        <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
+                        <a onclick="window.open('${dictionary[key].site_link}', '_blank')" class="cursor-pointer relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">${dictionary[key].category || 'Uncategorized'}</a>
+                    </div>
+                    <div class="group relative">
+                        <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                            <a href="#" onclick="window.open('${dictionary[key].site_link}', '_blank')">
+                                <span class="absolute inset-0"></span>
+                                ${dictionary[key].title}
+                            </a>
+                        </h3>
+                        <p class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600">${dictionary[key].description}</p>
+                    </div>
+                    <div class="relative mt-8 flex items-center gap-x-4">
+                        <img src="${dictionary[key].logo_link}" alt="" class="h-10 w-10 rounded-full bg-gray-50">
+                        <div class="text-sm leading-6">
+                            <p class="font-semibold text-gray-900">
+                                <a href="#" onclick="window.open('${dictionary[key].site_link}', '_blank')">
+                                    <span class="absolute inset-0"></span>
+                                    ${dictionary[key].title}
+                                </a>
+                            </p>
+                            <p class="text-gray-600">${dictionary[key].category || 'Uncategorized'}</p>
+                        </div>
+                    </div>
                 `;
 
                 article.innerHTML = htmlContent;
 
                 // Appending the article to the container
                 container.appendChild(article);
-              }
             }
-          })
-          .catch((error) => console.error("Error fetching JSON:", error));
-      }
+        }
+    }
 
-      // Call the function to generate articles
-      generateArticles();
-    </script>
-  </body>
+    // Call the function to generate articles
+    generateArticles();
+</script>
+
+</body>
 </html>
